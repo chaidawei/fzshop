@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fzshop:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="fzshop.war">
+      <element id="artifact" artifact-name="fzshop:war exploded" />
+    </root>
+  </artifact>
+</component>

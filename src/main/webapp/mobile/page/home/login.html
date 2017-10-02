@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="utf-8">
+    <title>登录丰泽商城</title>
+    <link rel="stylesheet" href="/mobile/b2c/themes/default/statics/css/ectouch.css">
+    <script type="text/javascript">var tpl = '/mobile/b2c/themes/default';</script>
+</head>
+<body style="max-width:640px;" class="b-color-f">
+<div id="loading" style="display: none;"><img src="/mobile/b2c/themes/default/statics/img/loading.gif"></div>
+<header class="dis-box header-menu b-color color-whie"><a class="" href="javascript:history.go(-1)"><i class="iconfont icon-jiantou"></i></a>
+    <h3 class="box-flex">登录</h3>
+    <p><a href="index.jsp"><i class="iconfont icon-home"></i></a></p>
+</header>
+
+<div class="padding-all b-color-f">
+    <form name="formLogin" action="/mobile/home/loginCheck.do" method="post" class="validforms">
+        <div class="ect-bg-colorf">
+            <section>
+                <ul class="register-list-box">
+                    <li class="dis-box user-register-box">
+                        <div class="box-flex reg-left-input">
+                            <input placeholder="手机号" name="phone" type="text" id="username" maxlength="20">
+                        </div>
+                    </li>
+                    <li class="dis-box user-register-box input-text item-password">
+                        <input class="txt-password" type="password" name="password" autocomplete="off" placeholder="请输入密码">
+                        <b class="tp-btn btn-off"></b>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <div class="weui-cells__tips"></div>
+        <p class="ect-checkbox ect-padding-tb ect-margin-tb ect-margin-bottom0">
+            <input type="checkbox" value="1" name="remember" id="remember" class="l-checkbox">
+            <label for="remember">记住本次登录<i></i></label>
+        </p>
+        <div class=" ect-padding-tb">
+            <button type="submit" class="btn-submit" value="">立即登录</button>
+        </div>
+    </form>
+    <p class="text-right ect-margin-bottom0 n-login-x">
+        <a href="/mobile/home/reset.html">忘记密码</a>
+        <a href="/mobile/home/register.html">免费注册</a>
+    </p>
+</div>
+<script type="text/javascript" src="/mobile/b2c/data/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/mobile/b2c/data/assets/js/jquery.json.js"></script>
+<script type="text/javascript" src="/mobile/b2c/data/assets/js/common.js"></script>
+<script type="text/javascript" src="/mobile/b2c/data/assets/js/utils.js"></script>
+<script type="text/javascript" src="/mobile/b2c/data/assets/js/validform.js"></script>
+<script type="text/javascript" src="/mobile/b2c/themes/default/js/ectouch.js"></script>
+<script type="text/javascript" src="/mobile/b2c/themes/default/js/simple-inheritance.min.js"></script>
+<script type="text/javascript" src="/mobile/b2c/themes/default/js/jquery.scrollUp.min.js"></script>
+<script type="text/javascript" src="/mobile/b2c/themes/default/statics/js/ectouch.js"></script>
+<script language="javascript">
+    var handler = function(e) { //禁止浏览器默认行为
+        e.preventDefault();
+    };
+</script>
+<script>
+    $('.btn-off').on('click', function() {
+        if ($(this).hasClass('btn-on')) {
+            $(this).removeClass('btn-on');
+            $(this).prev().attr('type', 'password');
+        } else {
+            $(this).addClass('btn-on');
+            $(this).prev().attr('type', 'text');
+        }
+    });
+</script>
+</body>
+</html>

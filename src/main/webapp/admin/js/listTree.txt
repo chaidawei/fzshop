@@ -1,0 +1,31 @@
+﻿[
+	{id: "base", name: "系统管理"},
+	
+	{id: "ajax", name: "用户管理", pid: "base",url:""},
+	{id: "json", name: "角色管理", pid: "base",url:""},
+
+	{id: "forms", name: "商品管理"},
+
+	{id: "button", name: "商品分类", pid: "forms",url:"class/class.jsp"},
+	{id: "listbox", name: "商品列表", pid: "forms",url:"goods/goods.jsp"},
+
+	{id: "banner", name: "轮播管理"},
+
+    {id: "bannerlist", name: "轮播列表", pid: "banner",url:"banner/banner.jsp"},
+
+	{id: "lists", name: "订单管理"},
+
+	{id: "datagrid", name: "订单列表", pid: "lists",url:"order/order.jsp"},
+	{id: "tree", name: "地址列表", pid: "lists",url:""},
+
+	{id: "layouts", name: "会员管理",checked:true},
+
+	{id: "panel", name: "会员列表", pid: "layouts",url:""},
+
+	{id: "baob", name: "报表",checked:true},
+
+    	{id: "dbaob", name: "订单报表", pid: "baob",url:"report/order.jsp"},
+    	{id: "ybaob", name: "月销售报表", pid: "baob",url:"report/monthrole.jsp"},
+
+
+]

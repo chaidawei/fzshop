@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.admin.mapper.ProClassMapper">
+<resultMap id="cla" type="class">
+    <id column="id" property="id"/>
+    <result property="name" column="name"/>
+    <result property="pid" column="pid"/>
+    <result property="path" column="path"/>
+</resultMap>
+<select id="queryAll" resultMap="cla">
+    select * from fz_shop_class order by concat(path,id)
+</select>
+<insert id="insert">
+    insert into fz_shop_class values(null,#{name},#{pid},#{path});
+</insert>
+<delete id="delete">
+    delete from fz_shop_class where id=#{id};
+</delete>
+<select id="selectByPid" resultMap="cla">
+    select * from fz_shop_class where id=#{id};
+</select>
+<update id="update" >
+    update fz_shop_class set name =#{name},pid=#{pid} , path=#{path} where id=#{id};
+</update>
+
+</mapper>

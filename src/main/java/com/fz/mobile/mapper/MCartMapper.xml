@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mobile.mapper.MCartMapper">
+    <!--cart -->
+    <resultMap id="cart" type="cart">
+        <id column="id" property="id"/>
+        <result column="cust_id" property="custId"/>
+        <result column="gid" property="gid"/>
+        <result column="price" property="price"/>
+        <result column="num" property="num"/>
+        <result column="intime" property="inTime"/>
+    </resultMap>
+
+    <!-- order -->
+    <resultMap id="order" type="order">
+        <id property="id" column="id"/>
+        <result property="custId" column="cust_id"/>
+        <result property="addId" column="add_id"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="total" column="total"/>
+        <result property="state" column="state"/>
+        <result property="time" column="time"/>
+        <result property="payStatus" column="pay_status"/>
+        <result property="payType" column="pay_type"/>
+        <result property="serialNo" column="serialno"/>
+        <result property="fhStatus" column="fhstatus"/>
+    </resultMap>
+
+    <!-- orderDetail -->
+    <resultMap id="orderDetail" type="orderDetail">
+        <id property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="gid" column="gid"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="num" column="num"/>
+    </resultMap>
+
+
+    <select id="showCartNumByUserId" resultType="map">
+        select c.price,c.num,g.name,g.id,g.`logo` as img from fz_shop_cart c,fz_shop_goods g
+        <where>
+            c.cust_id=#{id}
+            AND
+            c.gid=g.id
+        </where>
+    </select>
+
+    <select id="selectCartGoodByGoodId" resultType="map">
+        select g.name,c.num,c.price from fz_shop_cart c,fz_shop_goods g
+        <where>
+            c.cust_id=#{id}
+            AND
+            c.gid=#{gid}
+            AND
+            g.id=c.gid
+        </where>
+</select>
+
+    <delete id="deleteCartDataById" parameterType="int">
+        delete from fz_shop_cart
+        <where>
+            gid=#{id}
+        </where>
+    </delete>
+
+    <update id="updateGoodNumById" parameterType="int">
+        UPDATE fz_shop_cart c SET c.num = #{num} where c.gid=#{gid} and c.cust_id=#{id}
+    </update>
+
+    <select id="selectCustomerAddrByUserId" resultType="map">
+        select id,address from fz_shop_address
+        <where>
+            cust_id = #{id}
+            AND
+            state = 1
+        </where>
+    </select>
+
+    <insert id="orderSub" useGeneratedKeys="true" keyProperty="id" parameterType="order">
+        insert into fz_shop_order values(null,#{custId},#{addId},#{orderNum},#{total},#{state},#{time},#{payStatus},#{payType},#{serialNo},#{fhStatus});
+    </insert>
+
+    <insert id="insertOrderDetail" parameterType="orderDetail">
+        insert into fz_shop_order_detail values(null,${orderId},#{gid},#{name},#{price},#{num})
+    </insert>
+
+    <select id="selectOrderNoById" resultType="map">
+        select order_num,total from fz_shop_order
+        <where>
+            id=#{id}
+        </where>
+    </select>
+
+    <delete id="deleteCartByUserId" parameterType="int">
+        delete from fz_shop_cart where cust_id=#{userId}
+    </delete>
+
+</mapper>

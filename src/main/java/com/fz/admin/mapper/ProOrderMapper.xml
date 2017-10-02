@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.admin.mapper.ProOrderMapper">
+    <resultMap id="ord" type="order">
+        <id column="id" property="id"/>
+        <result property="custId" column="cust_id"/>
+        <result property="addId" column="add_id"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="total" column="total"/>
+        <result property="state" column="state"/>
+        <result property="time" column="time"/>
+        <result property="payStatus" column="pay_status"/>
+        <result property="payType" column="pay_type"/>
+        <result property="serialNo" column="serialno"/>
+        <result property="fhStatus" column="fhstatus"/>
+    </resultMap>
+    <select id="queryAll" resultMap="ord">
+        select * from fz_shop_order;
+    </select>
+    <select id="selectById" resultMap="ord">
+        select * from fz_shop_order where id=#{id};
+    </select>
+    <update id="updateById" >
+        update fz_shop_order set add_id=#{addId},total=#{total},state=#{state},pay_status=#{payStatus},pay_type=#{payType},serialno=#{serialNo},fhstatus=#{fhStatus} where id=#{id};
+
+    </update>
+    <delete id="deleteById">
+        delete from fz_shop_order where id=#{id};
+    </delete>
+
+</mapper>

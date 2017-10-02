@@ -1,0 +1,62 @@
+/*预订单样式*/
+
+.middlenone_foot{
+    position: absolute;
+    top: 12em;
+    left: 2.7em;
+    width: 75%;
+}
+.middlenone_aout{
+    font-size: 30px;
+    position: absolute;
+    top:4.5em;
+    left: 4em;
+}
+
+/*--有订单中间部分样式--*/
+.middle{
+    width: 100%;
+    height: auto;
+}
+.middle_left{
+    position: relative;
+    top:0.8em;
+    left: 0.5em;
+
+}
+.middle_upper{
+    position: relative;
+    top: -3.5em;
+    left: 7.5em;
+}
+.middle_right{
+    position: relative;
+    font-size: 15px;
+    left: 13em;
+    top: -3.5em;
+}
+.middle_p{
+    position: relative;
+    left: 10em;
+    top: -2em;
+    color: #d58512;
+}
+
+.middle_foot_button{
+    position: relative;
+    top: -1.3em;
+    width: 35%;
+    left: 14.5em;
+    height: auto;
+}
+.middle_hr_three{
+    position: relative;
+    height: 1px;
+    background: #000000;
+    top: -1em;
+}
+
+a{
+    text-decoration: none;
+
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.admin.mapper.OrderMapper">
+    <select id="queryOrder" resultType="map">
+        SELECT o.order_num,g.name,addr.address,o.total,o.state,DATE_FORMAT(o.`time`,'%Y-%m-%d') time,o.pay_type FROM fz_shop_order o,fz_shop_order_detail od,fz_shop_customer c,fz_shop_goods g,fz_shop_address addr where o.id=od.order_id AND c.id=o.cust_id AND o.add_id=addr.id AND od.gid=g.id
+        <if test="key!=''">
+            AND o.order_num = #{key}
+        </if>
+        <if test="date1!=''">
+            AND DATE_FORMAT(o.`time`,'%Y-%m-%d') = #{date1}
+        </if>
+    </select>
+    <select id="queryMonthOrder" resultType="map">
+        SELECT DATE_FORMAT(o.`time`,'%Y-%m') month,od.name,SUM(od.num) num,SUM(o.total) total FROM fz_shop_order o,fz_shop_order_detail od,fz_shop_customer c WHERE c.id=o.cust_id AND o.id=od.order_id AND o.state=1
+        <if test="key!=''">
+            AND od.name = #{key}
+        </if>
+        <if test="date1!=''">
+            AND DATE_FORMAT(o.`time`,'%Y-%m') = #{date1}
+        </if>
+        GROUP BY DATE_FORMAT(o.`time`,'%Y-%m')
+    </select>
+</mapper>

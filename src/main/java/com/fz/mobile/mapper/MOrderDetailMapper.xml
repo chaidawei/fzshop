@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		<!--namespace 必须和映射接口名一致 -->
+	<mapper namespace="com.fz.mobile.mapper.MOrderDetailMapper">
+	<!--配置二级缓存-->
+	<cache eviction="FIFO" flushInterval="60000" readOnly="true" size="512"/>
+	<resultMap id="orderdetail" type="orderDetail">
+        <id property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="gid" column="gid"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="num" column="num"/>
+    </resultMap>
+
+
+    <select id="query" resultMap="orderdetail">
+        select * from fz_shop_order_detail
+    </select>
+
+
+    <select id="querydetails" resultType="map">
+       select a.*,b.logo  from fz_shop_order_detail a,fz_shop_goods b,fz_shop_order c where c.cust_id = #{id} and c.order_num=#{onum} and a.gid=b.id  and c.id = a.order_id
+    </select>
+
+    <select id="queryaddress" resultType="address">
+        select * from fz_shop_address where cust_id=#{id} and state = 1
+    </select>
+
+    <select id="queryorder" resultType="map">
+        select * from fz_shop_order where cust_id = #{id}  and order_num = #{onum}
+    </select>
+
+    <update id="updatecancelorder" parameterType="int">
+        update fz_shop_order set state = 2 ,pay_status= 0 ,fhstatus = 0  where id = #{id}
+    </update>
+
+    <select id="queryid" resultType="int">
+        select id from fz_shop_order where cust_id = #{id} and order_num = #{onum}
+    </select>
+    </mapper>

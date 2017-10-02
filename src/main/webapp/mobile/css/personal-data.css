@@ -1,0 +1,32 @@
+/*--有订单中间部分样式--*/
+.middle{
+    width: 100%;
+    height: auto;
+}
+.middle_left{
+    position: relative;
+    top:0.8em;
+    left: 0.5em;
+
+}
+.middle_upper{
+    position: relative;
+    top: -4.5em;
+    left: 7.5em;
+}
+.middle_right{
+    position: relative;
+    font-size: 15px;
+    left: 15.9em;
+    top: -5em;
+}
+.middle_right_lower{
+    position: relative;
+    left: 7em;
+    top: -1.8em;
+}
+.middle_foot{
+    position: relative;
+    top: -1.5em;
+}
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mobile.mapper.MAppraiseMapper">
+    <select id="queryRow" resultType="java.lang.Integer">
+        select count(*) from fz_shop_appraise where gid=#{gid}
+        <if test="s==5">
+            and star&lt;5
+        </if>
+        <if test="s==3">
+            and star&lt;3
+        </if>
+    </select>
+    <select id="queryAppr" resultType="map">
+        select a.*,c.name from fz_shop_appraise a,fz_shop_customer c where gid=#{gid} and cust_id=c.id
+        <if test="l!= null">
+             limit 0,2
+        </if>
+    </select>
+</mapper>

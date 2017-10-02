@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.admin.mapper.GoodsImgMapper">
+    <select id="queryById" resultType="goodsImg">
+        select * from fz_shop_goods_img where id=#{id}
+    </select>
+    <select id="queryAll" resultType="goodsImg">
+        select * from fz_shop_goods_img
+    </select>
+    <select id="queryByPid" resultType="map">
+        select * from fz_shop_goods_img where gid=#{id}
+    </select>
+    <delete id="delById">
+        delete  from fz_shop_goods_img where id=#{id}
+    </delete>
+    <insert id="save" parameterType="goodsImg">
+        insert into fz_shop_goods_img values(null,#{gid},#{img})
+    </insert>
+    <insert id="save1" parameterType="goodsImg">
+        insert into fz_shop_goods_img values(null,#{gid},#{img})
+    </insert>
+
+</mapper>

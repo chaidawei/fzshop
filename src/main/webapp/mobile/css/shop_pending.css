@@ -1,0 +1,68 @@
+/*--有订单中间部分样式--*/
+.middle{
+    width: 100%;
+    height: auto;
+}
+.middle_left{
+    position: relative;
+    top:0.8em;
+    left: 0.5em;
+
+}
+.middle_upper{
+    position: relative;
+    top: -4.0em;
+    left: 7.5em;
+}
+.middle_right{
+    position: relative;
+    font-size: 15px;
+    left: 16em;
+    top: -4.0em;
+}
+.middle_foot_button{
+    position: relative;
+    left: 15em;
+    top: -1.8em;
+    width: 30%;
+    text-align: center;
+}
+.middle_right_photo{
+    width: 10px;
+    height: 10px;
+    position: relative;
+    left: 22.5em;
+    top: -5.5em;
+}
+.middle_foot{
+    position: relative;
+    top: -1.5em;
+    height: 1px;
+    background: #000000;
+}
+.middle_p{
+    position: relative;
+    left: 9em;
+    top: -2.6em;
+    color: orangered;
+}
+
+a{
+    text-decoration: none;
+
+}
+
+/*预订单样式*/
+
+.middlenone_foot{
+    position: absolute;
+    top: 12em;
+    left: 2.7em;
+    width: 75%;
+}
+.middlenone_aout{
+    font-size: 30px;
+    position: absolute;
+    top:4.5em;
+    left: 4em;
+}

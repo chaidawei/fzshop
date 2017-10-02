@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mobile.mapper.MClassMapper">
+    <resultMap id="cla" type="class">
+        <id column="id" property="id"/>
+        <result property="name" column="name"/>
+        <result property="pid" column="pid"/>
+        <result property="path" column="path"/>
+    </resultMap>
+  <select id="querybig" resultMap="cla">
+      select * from fz_shop_class where pid=0
+  </select>
+    <select id="querysmall" resultMap="cla">
+        select * from fz_shop_class where pid=#{id}
+    </select>
+    <select id="querybyid" resultMap="cla">
+        select name from fz_shop_class where id=#{id}
+    </select>
+    <select id="queryimg" resultMap="cla">
+        select img from fz_shop_goods_img  where id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.admin.mapper.BannerMapper">
+    <resultMap id="bannerr" type="banner">
+        <result property="id" column="id"/>
+        <result property="gid" column="gid"/>
+        <result property="name" column="name"/>
+        <result property="img" column="img"/>
+        <result property="link" column="link"/>
+        <result property="state" column="state"/>
+        <result property="inTime" column="time"/>
+    </resultMap>
+    <select id="queryAll" resultMap="bannerr">
+        select * from fz_shop_banner
+    </select>
+    <update id="updateById">
+update fz_shop_banner set gid=#{gid},name=#{name},img=#{img},link=#{link},state=#{state},time=#{inTime} where id=#{id}
+</update>
+    <select id="queryAlls"  resultType="map">
+        select * from fz_shop_banner
+    </select>
+    <select id="queryById" resultType="banner">
+        select * from fz_shop_banner where id=#{id}
+    </select>
+    <delete id="delById">
+        delete from fz_shop_banner where id=#{id}
+    </delete>
+</mapper>

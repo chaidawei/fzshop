@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 必须和映射接口名一致 -->
+<mapper namespace="com.fz.mobile.mapper.MCustomerMapper">
+    <!--配置二级缓存-->
+    <cache eviction="FIFO" flushInterval="60000" readOnly="true" size="512"/>
+    <resultMap id="cust" type="customer">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="img" column="img"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="gender" column="gender"/>
+        <result property="birthday" column="birthday"/>
+        <result property="other" column="other"/>
+        <result property="time" column="time"/>
+    </resultMap>
+
+    <update id="change" parameterType="map">
+        update fz_shop_customer
+        <set>
+            <if test="cname!=null">
+                name=#{cname},
+            </if>
+            <if test="cpassword!=null">
+                password=#{cpassword},
+            </if>
+            <if test="cphone!=null">
+                phone=#{cphone},
+            </if>
+            <if test="cemail!=null">
+                email=#{cemail},
+            </if>
+            <if test="cgender!=null">
+                gender=#{cgender},
+            </if>
+            <if test="cbirthday!=null">
+                birthday=#{cbirthday},
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+    <select id="queryRow" resultType="java.lang.Integer">
+    select count(*) from fz_shop_customer where phone=#{phone}
+    </select>
+
+    <select id="queryPass" resultType="string">
+      select password from fz_shop_customer where id=#{id}
+    </select>
+</mapper>

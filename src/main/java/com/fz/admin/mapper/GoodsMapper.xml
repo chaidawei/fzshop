@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.admin.mapper.GoodsMapper">
+    <resultMap id="goodss" type="goods">
+        <id column="id" property="id"/>
+        <result property="name" column="name"/>
+        <result property="classId" column="class_id"/>
+        <result property="price" column="price"/>
+        <result property="oprice" column="oprice"/>
+        <result property="stock" column="stock"/>
+        <result property="sale" column="sale"/>
+        <result property="state" column="state"/>
+        <result property="inTime" column="intime"/>
+        <result property="proFile" column="profile"/>
+        <result property="params" column="params"/>
+        <result property="content" column="content"/>
+        <result property="logo" column="logo"/>
+    </resultMap>
+    <select id="queryById"  resultMap="goodss">
+        select * from fz_shop_goods where id=#{id}
+    </select>
+
+    <select id="queryAll" resultMap="goodss">
+        select * from fz_shop_goods
+    </select>
+
+    <select id="queryAlls"  resultType="map">
+        select * from fz_shop_goods
+    </select>
+
+    <select id="queryKey" parameterType="int" resultType="int">
+        select max(id) from fz_shop_goods
+    </select>
+
+    <delete id="delById" parameterType="int">
+        delete from fz_shop_goods where id = #{id}
+    </delete>
+
+    <insert id="save" parameterType="goods">
+        insert into fz_shop_goods values(null,#{name},#{classId},#{price},#{oprice},#{stock},#{sale},#{state},#{inTime},#{proFile},#{params},#{content},#{logo})
+    </insert>
+
+    <update id="updateById" >
+        update fz_shop_goods set name=#{name},class_id=#{classId},price=#{price},oprice=#{oprice},stock=#{stock},sale=#{sale},state=#{state},intime=#{inTime},profile=#{proFile},params=#{params},content=#{content},logo=#{logo} where id=#{id}
+    </update>
+</mapper>

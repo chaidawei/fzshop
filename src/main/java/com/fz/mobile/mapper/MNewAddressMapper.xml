@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mobile.mapper.MNewAddressMapper">
+    <resultMap id="bookmap" type="address">
+        <id property="id" column="cust_id"/>
+        <result property="receiver" column="receiver"/>
+        <result property="address" column="address"/>
+        <result property="zipcode" column="zipcode"/>
+        <result property="phone" column="phone"/>
+    </resultMap>
+
+
+    <insert id="save" parameterType="map">
+        insert into fz_shop_address(id,cust_id,receiver,address,phone,state) values(null,#{custId},#{receiver},#{address},#{phone},#{state})
+    </insert>
+
+
+</mapper>
+
+

@@ -1,0 +1,80 @@
+body{
+    font-size: 20px;
+}
+header{
+    height: 140px;
+    background-color: rgba(38, 92, 232, 0.67);
+    width: auto;
+    height: auto;
+    color: #141414;
+    padding: 10px;
+}
+
+.header-account{
+    height: 78px;
+    padding: 10px 0px 0px 10px;
+}
+
+.header-account img{
+    width: 4em;
+    height: 3.8em;
+    border-radius: 50%;
+    float:left;
+}
+
+.header-center{
+    float:left;
+    margin-left: 1.5em;
+}
+
+header ul{
+    height: 45px;
+    border-top: 1px solid #EEEEEE;
+    padding: 6px;
+    list-style: none;
+}
+
+header ul li{
+    font-size: 1.0em;
+    font-weight: bolder;
+    width: 49%;
+    text-align: center;
+    float: left;
+}
+
+header ul li:first-child {
+    border-right: 1px solid #EEEEEE;
+}
+
+.order{
+    height: auto;
+    padding: .5em 0 ;
+}
+.order_info{
+    margin-top: .5em;
+    padding: .5em 0 ;
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:flex;
+    z-index:500;
+    bottom:0;
+    width:100%;
+}
+
+.order_text{
+    display:inline-block;
+    padding:.15em .4em;
+    min-width:8px;
+    border-radius:50%;
+    background-color: #1cbb7f;
+    color:#fff;line-height:1.2;
+    text-align:center;
+    font-size: 6px;
+    vertical-align:middle;
+    position: absolute;
+    top: -.1em;
+    right:2.8em;
+}
+.foot_text{
+    color: #1aad19;
+}

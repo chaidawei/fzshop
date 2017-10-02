@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		<!--namespace 必须和映射接口名一致 -->
+	<mapper namespace="com.fz.mobile.mapper.MOrderMapper">
+	<!--配置二级缓存-->
+	<cache eviction="FIFO" flushInterval="60000" readOnly="true" size="512"/>
+	<resultMap id="order" type="order">
+        <id property="id" column="id"/>
+        <result property="custId" column="cust_id"/>
+		<result property="addId" column="add_id"/>
+		<result property="orderNum" column="order_num"/>
+		<result property="total" column="total"/>
+		<result property="state" column="state"/>
+		<result property="time" column="time"/>
+		<result property="payStatus" column="pay_status"/>
+		<result property="payType" column="pay_type"/>
+		<result property="serialNo" column="serialno"/>
+		<result property="fhStatus" column="fhstatus"/>
+    </resultMap>
+	
+	<select id="query" resultMap="order" parameterType="map">
+		select * from fz_shop_order
+		<where>
+			cust_id = #{id}
+		</where>
+	</select>
+
+<select id="queryOrder" resultType="map">
+	SELECT o.*,good.logo FROM fz_shop_order o,(SELECT logo FROM fz_shop_goods g WHERE g.id=(SELECT gid FROM fz_shop_order_detail od,fz_shop_order oo WHERE od.order_id =oo.id AND oo.`cust_id`=#{id} LIMIT 0,1)) good WHERE o.`cust_id`=#{id}
+</select>
+
+
+
+	<select id="querypending" resultType="map">
+		select b.*,c.* from fz_shop_order a,fz_shop_order_detail b,fz_shop_goods c where a.cust_id = #{id} and a.state = #{start} and a.id=b.order_id and c.id=b.gid
+	</select>
+
+	<select id="queryreceived" resultType="map">
+		 select b.*,c.* from fz_shop_order a,fz_shop_order_detail b,fz_shop_goods c where a.cust_id = #{id} and a.fhstatus = #{start} and a.id=b.order_id and c.id=b.gid
+	</select>
+
+	<update id="updateconfrm_receive">
+		update  fz_shop_order a,fz_shop_order_detail b set a.fhstatus = #{start},a.state= #{state},a.pay_status= #{pstate} where a.cust_id = #{id} and a.id = b.order_id
+	</update>
+
+	<select id="qureyreturned" resultType="map">
+		select b.*,c.* from fz_shop_order a,fz_shop_order_detail b,fz_shop_goods c where a.cust_id = #{id} and a.fhstatus = #{start} and a.id=b.order_id and c.id=b.gid
+	</select>
+
+	<update id="Confirm_refund" >
+		update fz_shop_order a,fz_shop_order_detail b set a.fhstatus=#{fstart},a.state=#{state},a.pay_status=#{pstate} where a.cust_id=#{id} and a.id=b.order_id
+	</update>
+
+	<select id="qureyevaluation" resultType="map">
+		select b.*,c.* from fz_shop_order a,fz_shop_order_detail b,fz_shop_goods c where a.cust_id = #{id} and a.fhstatus= #{start} and a.id = b.order_id and c.id=b.gid
+	</select>
+    </mapper>

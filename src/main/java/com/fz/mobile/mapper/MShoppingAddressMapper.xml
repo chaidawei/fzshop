@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mobile.mapper.MShoppingAddressMapper">
+    <resultMap id="lookmap" type="address">
+       <id property="id" column="id"/>
+        <result property="custId" column="cust_id"/>
+        <result property="receiver" column="receiver"/>
+        <result property="address" column="address"/>
+        <result property="phone" column="phone"/>
+    </resultMap>
+
+    <select id="query" resultMap="lookmap">
+        select * from fz_shop_address where cust_id=#{id}
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        delete from fz_shop_address where id = #{id}
+    </delete>
+
+    <select id="count" parameterType="int" resultType="int">
+        select count(*) from fz_shop_address where cust_id=#{id}
+    </select>
+
+    <update id="changeAddress" parameterType="map">
+        update fz_shop_address
+        <set>
+            <if test="receiver!=null">
+                receiver=#{receiver},
+            </if>
+            <if test="address!=null">
+                address=#{address},
+            </if>
+            <if test="zipcode!=null">
+                zipcode=#{zipcode},
+            </if>
+            <if test="phone!=null">
+                phone=#{phone}
+            </if>
+            <if test="state!=null">
+                state = #{state}
+            </if>
+        </set>
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+            <if test="custId!=null">
+              and  cust_id=#{custId}
+            </if>
+        </where>
+    </update>
+
+    <update id="changeState" parameterType="int">
+        UPDATE fz_shop_address f SET f.state = 0 WHERE  f.`state`= 1 AND f.`cust_id`= #{custId};
+    </update>
+    <update id="ch" parameterType="map">
+        UPDATE fz_shop_address f SET f.state = 1 WHERE f.id = #{id} AND f.`cust_id` = #{custID};
+    </update>
+
+
+
+
+</mapper>
